@@ -9,19 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f7f6f3;
+      --bg: #f5f6f2;
       --surface: #ffffff;
-      --text: #1a1a1a;
-      --text-muted: #555;
-      --accent: #3d5a80;
-      --accent-light: #e8eef5;
-      --accent-dark: #2c4060;
-      --border: #e0ddd8;
-      --olive: #5c6e4a;
-      --tag-bg: #eef2ee;
+      --text: #1a1f17;
+      --text-muted: #556050;
+      --accent: #4a6741;
+      --accent-light: #e6efe4;
+      --accent-dark: #2d4428;
+      --border: #dde3da;
+      --tag-bg: #eaf0e7;
+      --tag-text: #3a5434;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -34,14 +36,13 @@
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
-    /* ── Layout ── */
     .page {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* ── Header / Hero ── */
+    /* ── Header ── */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -50,44 +51,39 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 140px 1fr;
+      grid-template-columns: 148px 1fr;
       gap: 36px;
       align-items: start;
     }
 
     .hero-photo {
-      width: 130px;
-      height: 130px;
+      width: 136px;
+      height: 136px;
       border-radius: 50%;
       object-fit: cover;
+      object-position: center top;
       border: 3px solid var(--accent-light);
-      background: var(--accent-light);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 48px;
-      font-weight: 700;
       flex-shrink: 0;
+      display: block;
     }
 
     .hero-info h1 {
-      font-size: 28px;
+      font-size: 27px;
       font-weight: 700;
-      letter-spacing: -0.5px;
+      letter-spacing: -0.4px;
       color: var(--text);
       line-height: 1.2;
     }
 
     .hero-info .subtitle {
-      font-size: 15px;
+      font-size: 14.5px;
       color: var(--accent);
       font-weight: 500;
-      margin-top: 4px;
+      margin-top: 5px;
     }
 
     .hero-info .affiliation {
-      font-size: 14px;
+      font-size: 13.5px;
       color: var(--text-muted);
       margin-top: 2px;
     }
@@ -96,7 +92,7 @@
       margin-top: 14px;
       font-size: 14px;
       color: var(--text-muted);
-      max-width: 700px;
+      max-width: 680px;
       line-height: 1.75;
     }
 
@@ -104,67 +100,86 @@
       margin-top: 16px;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 9px;
     }
 
     .hero-links a {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       font-size: 13px;
       font-weight: 500;
-      color: var(--accent);
+      color: var(--accent-dark);
       background: var(--accent-light);
-      padding: 5px 12px;
+      padding: 5px 13px;
       border-radius: 20px;
-      transition: background 0.2s;
+      border: 1px solid #c8dac4;
+      transition: background 0.2s, border-color 0.2s;
     }
 
     .hero-links a:hover {
-      background: #d4e0ef;
+      background: #d4e6d0;
+      border-color: var(--accent);
       text-decoration: none;
     }
 
-    /* ── Nav ── */
+    /* ── Nav / Tabs ── */
     nav {
       background: var(--surface);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 2px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
 
-    nav ul {
+    .nav-inner {
       display: flex;
       list-style: none;
       gap: 0;
       overflow-x: auto;
+      scrollbar-width: none;
     }
 
-    nav ul li a {
-      display: block;
-      padding: 14px 18px;
+    .nav-inner::-webkit-scrollbar { display: none; }
+
+    .nav-inner li a {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 15px 20px;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-muted);
       white-space: nowrap;
-      border-bottom: 2px solid transparent;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
       transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.01em;
     }
 
-    nav ul li a:hover,
-    nav ul li a.active {
+    .nav-inner li a .nav-icon {
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .nav-inner li a:hover {
       color: var(--accent);
-      border-bottom-color: var(--accent);
       text-decoration: none;
     }
 
-    /* ── Two-column layout ── */
+    .nav-inner li a.active {
+      color: var(--accent-dark);
+      border-bottom-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    /* ── Layout ── */
     .content {
       display: grid;
-      grid-template-columns: 1fr 300px;
-      gap: 32px;
-      padding: 40px 0 60px;
+      grid-template-columns: 1fr 290px;
+      gap: 28px;
+      padding: 36px 0 60px;
       align-items: start;
     }
 
@@ -173,31 +188,39 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 28px 28px;
-      margin-bottom: 24px;
+      padding: 26px 28px;
+      margin-bottom: 22px;
+      scroll-margin-top: 58px;
     }
 
     .section-title {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       color: var(--accent);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       padding-bottom: 10px;
       border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title .icon {
+      font-size: 15px;
     }
 
     /* ── Timeline ── */
     .timeline-item {
       display: grid;
-      grid-template-columns: 90px 1fr;
-      gap: 16px;
+      grid-template-columns: 88px 1fr;
+      gap: 14px;
       padding: 14px 0;
       border-bottom: 1px solid var(--border);
     }
 
-    .timeline-item:last-child { border-bottom: none; }
+    .timeline-item:last-child { border-bottom: none; padding-bottom: 0; }
 
     .timeline-year {
       font-size: 12px;
@@ -223,8 +246,8 @@
     .timeline-body .detail {
       font-size: 12.5px;
       color: var(--text-muted);
-      margin-top: 4px;
-      line-height: 1.5;
+      margin-top: 5px;
+      line-height: 1.6;
     }
 
     /* ── Publication ── */
@@ -233,44 +256,43 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .pub-item:last-child { border-bottom: none; }
+    .pub-item:last-child { border-bottom: none; padding-bottom: 0; }
 
-    .pub-item .pub-title {
+    .pub-title {
       font-size: 13.5px;
       font-weight: 600;
       color: var(--text);
       line-height: 1.5;
     }
 
-    .pub-item .pub-meta {
+    .pub-meta {
       font-size: 12.5px;
       color: var(--text-muted);
       margin-top: 3px;
     }
 
-    .pub-item .pub-journal {
-      font-style: italic;
-    }
+    .pub-journal { font-style: italic; }
 
     /* ── Tags ── */
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 4px;
+      gap: 6px;
+      margin-top: 8px;
     }
 
     .tag {
-      font-size: 12px;
+      font-size: 11.5px;
       background: var(--tag-bg);
-      color: var(--olive);
+      color: var(--tag-text);
       padding: 3px 10px;
       border-radius: 12px;
       font-weight: 500;
+      border: 1px solid #c4d9c0;
     }
 
-    /* ── Sidebar card ── */
-    .sidebar .section { margin-bottom: 20px; }
+    /* ── Sidebar ── */
+    .sidebar .section { margin-bottom: 18px; }
 
     .info-row {
       display: flex;
@@ -287,16 +309,15 @@
       font-weight: 600;
       color: var(--text-muted);
       font-size: 12px;
-      min-width: 70px;
+      min-width: 62px;
       padding-top: 2px;
     }
 
     .info-value { color: var(--text); }
 
     /* Language bar */
-    .lang-item {
-      margin-bottom: 12px;
-    }
+    .lang-item { margin-bottom: 13px; }
+    .lang-item:last-child { margin-bottom: 0; }
 
     .lang-name {
       font-size: 13px;
@@ -325,13 +346,36 @@
       border-radius: 3px;
     }
 
+    /* Sidebar tags vertical */
+    .tag-list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .tag-list .tag {
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12.5px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      padding: 22px 0;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .hero { grid-template-columns: 1fr; }
-      .hero-photo { width: 90px; height: 90px; font-size: 32px; }
+      .hero-photo { width: 96px; height: 96px; }
       .content { grid-template-columns: 1fr; }
       .sidebar { order: -1; }
-      .timeline-item { grid-template-columns: 70px 1fr; gap: 10px; }
+      .timeline-item { grid-template-columns: 68px 1fr; gap: 10px; }
     }
   </style>
 </head>
@@ -351,35 +395,29 @@
             licenciado e bacharel em Ciências Sociais pela Universidade Federal Fluminense (UFF)
             e técnico em Guia de Turismo pelo CEFET-RJ. Integra o CERES/IESP-UERJ e o GAPI/UFF.
             Desenvolve pesquisa sobre violência urbana, educação e desigualdades socioespaciais,
-            com ênfase nas relações entre grupos armados e escolas públicas. Tem também interesse
-            nas áreas de gênero, raça, sexualidade e análise do discurso digital.
+            com ênfase nas relações entre grupos armados e escolas públicas. Também pesquisa
+            gênero, raça, sexualidade e análise do discurso digital.
           </p>
           <div class="hero-links">
-            <a href="http://lattes.cnpq.br/8802299231847034" target="_blank">
-              &#127891; Currículo Lattes
-            </a>
-            <a href="https://orcid.org/0000-0002-9242-5991" target="_blank">
-              &#128279; ORCID
-            </a>
-            <a href="https://github.com/gabrielmmvillela" target="_blank">
-              &#128187; GitHub
-            </a>
+            <a href="http://lattes.cnpq.br/8802299231847034" target="_blank">&#127891; Currículo Lattes</a>
+            <a href="https://orcid.org/0000-0002-9242-5991" target="_blank">&#128279; ORCID</a>
+            <a href="https://github.com/gabrielmmvillela" target="_blank">&#128187; GitHub</a>
           </div>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ── Nav ── -->
+  <!-- ── Nav / Tabs ── -->
   <nav>
     <div class="page">
-      <ul>
-        <li><a href="#formacao">Formação</a></li>
-        <li><a href="#atuacao">Atuação</a></li>
-        <li><a href="#pesquisa">Pesquisa</a></li>
-        <li><a href="#publicacoes">Publicações</a></li>
-        <li><a href="#livros">Livros</a></li>
-        <li><a href="#eventos">Eventos</a></li>
+      <ul class="nav-inner">
+        <li><a href="#formacao" class="nav-link"><span class="nav-icon">&#127979;</span> Formação</a></li>
+        <li><a href="#atuacao" class="nav-link"><span class="nav-icon">&#128188;</span> Atuação</a></li>
+        <li><a href="#pesquisa" class="nav-link"><span class="nav-icon">&#128300;</span> Projetos</a></li>
+        <li><a href="#publicacoes" class="nav-link"><span class="nav-icon">&#128196;</span> Artigos</a></li>
+        <li><a href="#livros" class="nav-link"><span class="nav-icon">&#128218;</span> Livros</a></li>
+        <li><a href="#eventos" class="nav-link"><span class="nav-icon">&#127908;</span> Eventos</a></li>
       </ul>
     </div>
   </nav>
@@ -388,52 +426,48 @@
   <div class="page">
     <div class="content">
 
-      <!-- ── Main column ── -->
+      <!-- ── Main ── -->
       <main>
 
-        <!-- Formação Acadêmica -->
+        <!-- Formação -->
         <section class="section" id="formacao">
-          <h2 class="section-title">Formação Acadêmica</h2>
+          <h2 class="section-title"><span class="icon">&#127979;</span> Formação Acadêmica</h2>
 
           <div class="timeline-item">
-            <div class="timeline-year">2025 &ndash; atual</div>
+            <div class="timeline-year">2025 – atual</div>
             <div class="timeline-body">
               <h3>Mestrado em Sociologia</h3>
-              <p class="inst">Universidade do Estado do Rio de Janeiro (UERJ) &mdash; PPDS/IESP</p>
-              <p class="detail">
-                Bolsista CAPES &middot; Orientador: Prof. Dr. Rogério Jerônimo Barbosa<br/>
-                Áreas: Estratificação e Desigualdades Sociais; Sociologia da Violência; Sociologia da Educação
-              </p>
+              <p class="inst">Universidade do Estado do Rio de Janeiro (UERJ) — PPDS/IESP</p>
+              <p class="detail">Bolsista CAPES · Orientador: Prof. Dr. Rogério Jerônimo Barbosa<br/>
+              Áreas: Estratificação e Desigualdades Sociais · Sociologia da Violência · Sociologia da Educação</p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2020 &ndash; 2024</div>
+            <div class="timeline-year">2020 – 2024</div>
             <div class="timeline-body">
               <h3>Licenciatura e Bacharelado em Ciências Sociais</h3>
               <p class="inst">Universidade Federal Fluminense (UFF)</p>
-              <p class="detail">
-                TCC: <em>Dinâmicas de violência e educação: violência urbana nas escolas públicas de Niterói</em><br/>
-                Orientador: Prof. Dr. Carlos Henrique Aguiar Serra
-              </p>
+              <p class="detail">TCC: <em>Dinâmicas de violência e educação: violência urbana nas escolas públicas de Niterói</em><br/>
+              Orientador: Prof. Dr. Carlos Henrique Aguiar Serra</p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2016 &ndash; 2019</div>
+            <div class="timeline-year">2016 – 2019</div>
             <div class="timeline-body">
               <h3>Técnico em Guia de Turismo Regional</h3>
-              <p class="inst">Centro Federal de Educação Tecnológica Celso Suckow da Fonseca (CEFET/RJ)</p>
+              <p class="inst">CEFET/RJ — Centro Federal de Educação Tecnológica Celso Suckow da Fonseca</p>
             </div>
           </div>
 
-          <h2 class="section-title" style="margin-top: 28px;">Formação Complementar</h2>
+          <h2 class="section-title" style="margin-top:26px;">&#127891; Formação Complementar</h2>
 
           <div class="timeline-item">
             <div class="timeline-year">2025</div>
             <div class="timeline-body">
               <h3>Avaliação de Políticas e Sistemas Educacionais com Foco em Evidências</h3>
-              <p class="inst">Universidade Federal de Minas Gerais (UFMG) &mdash; 25h</p>
+              <p class="inst">Universidade Federal de Minas Gerais (UFMG) — 25h</p>
             </div>
           </div>
 
@@ -441,7 +475,7 @@
             <div class="timeline-year">2023</div>
             <div class="timeline-body">
               <h3>Gestão dos Recursos Vinculados à Educação Básica em Política Municipal e Fundeb</h3>
-              <p class="inst">Escola Nacional de Administração Pública (ENAP) &mdash; 25h</p>
+              <p class="inst">Escola Nacional de Administração Pública (ENAP) — 25h</p>
             </div>
           </div>
 
@@ -449,7 +483,7 @@
             <div class="timeline-year">2023</div>
             <div class="timeline-body">
               <h3>Políticas Públicas de Educação</h3>
-              <p class="inst">Escola Nacional de Administração Pública (ENAP) &mdash; 10h</p>
+              <p class="inst">Escola Nacional de Administração Pública (ENAP) — 10h</p>
             </div>
           </div>
 
@@ -457,7 +491,7 @@
             <div class="timeline-year">2021</div>
             <div class="timeline-body">
               <h3>Pedagogia Histórico-Crítica: Ciência, Currículo e Didática</h3>
-              <p class="inst">Universidade Federal do Cariri (UFCA) &mdash; 40h</p>
+              <p class="inst">Universidade Federal do Cariri (UFCA) — 40h</p>
             </div>
           </div>
 
@@ -465,66 +499,63 @@
             <div class="timeline-year">2018</div>
             <div class="timeline-body">
               <h3>Promoção e Defesa dos Direitos LGBT</h3>
-              <p class="inst">Escola Nacional de Administração Pública (ENAP) &mdash; 30h</p>
+              <p class="inst">Escola Nacional de Administração Pública (ENAP) — 30h</p>
             </div>
           </div>
         </section>
 
-        <!-- Atuação Profissional -->
+        <!-- Atuação -->
         <section class="section" id="atuacao">
-          <h2 class="section-title">Atuação Profissional</h2>
+          <h2 class="section-title"><span class="icon">&#128188;</span> Atuação Profissional</h2>
 
           <div class="timeline-item">
-            <div class="timeline-year">2025 &ndash; atual</div>
+            <div class="timeline-year">2025 – atual</div>
             <div class="timeline-body">
               <h3>Pesquisador Bolsista (Mestrado)</h3>
-              <p class="inst">IESP/UERJ &mdash; Instituto de Estudos Sociais e Políticos</p>
-              <p class="detail">Bolsista CAPES &middot; Linhas de pesquisa: Desigualdades, Mobilidade Social e Trabalho</p>
+              <p class="inst">IESP/UERJ — Instituto de Estudos Sociais e Políticos</p>
+              <p class="detail">Bolsista CAPES · Linhas: Desigualdades, Mobilidade Social e Trabalho</p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2024 &ndash; atual</div>
+            <div class="timeline-year">2024 – atual</div>
             <div class="timeline-body">
-              <h3>Servidor Público &mdash; Assistente VIII</h3>
+              <h3>Servidor Público — Assistente VIII</h3>
               <p class="inst">Assembleia Legislativa do Rio de Janeiro (ALERJ)</p>
-              <p class="detail">Atuação na Comissão de Educação e na Escola do Legislativo do Estado do Rio de Janeiro (ELERJ) &middot; Terceira Vice-Presidência</p>
+              <p class="detail">Atuação na Comissão de Educação e na Escola do Legislativo (ELERJ) · Terceira Vice-Presidência</p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2023 &ndash; 2024</div>
+            <div class="timeline-year">2023 – 2024</div>
             <div class="timeline-body">
-              <h3>Pesquisador Bolsista &mdash; PIBITI/CNPq</h3>
+              <h3>Pesquisador Bolsista — PIBITI/CNPq</h3>
               <p class="inst">Universidade Federal Fluminense (UFF)</p>
               <p class="detail">Projeto: <em>Violência urbana e educação: mapeamento dos impactos dos grupos armados nas escolas públicas de Niterói/RJ</em></p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2022 &ndash; 2024</div>
+            <div class="timeline-year">2022 – 2024</div>
             <div class="timeline-body">
-              <h3>Bolsista Estagiária</h3>
-              <p class="inst">Universidade Federal Fluminense (UFF) &mdash; Assembleia Legislativa do RJ</p>
-              <p class="detail">Atuação na Comissão de Educação (ELERJ)</p>
+              <h3>Estagiária — Comissão de Educação</h3>
+              <p class="inst">Assembleia Legislativa do Rio de Janeiro (ALERJ/UFF)</p>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2021 &ndash; atual</div>
+            <div class="timeline-year">2021 – atual</div>
             <div class="timeline-body">
               <h3>Pesquisador</h3>
-              <p class="inst">CEFET/RJ &mdash; Departamento de Ciências Políticas &amp; Faculdade de Educação (FEUFF)</p>
-              <p class="detail">
-                Linhas: Democracia, Estado e Teoria Política &middot; Articulação do Trabalho Educativo
-              </p>
+              <p class="inst">CEFET/RJ · FEUFF — Depto. de Ciências Políticas &amp; Faculdade de Educação</p>
+              <p class="detail">Linhas: Democracia, Estado e Teoria Política · Articulação do Trabalho Educativo</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-year">2019</div>
             <div class="timeline-body">
-              <h3>Pesquisador Bolsista &mdash; PIBIC-EM/CNPq</h3>
+              <h3>Pesquisador Bolsista — PIBIC-EM/CNPq</h3>
               <p class="inst">CEFET/RJ</p>
               <p class="detail">Projeto: <em>Produção de vídeos na Internet pela perspectiva de jovens negros LGBTs: uma análise discursiva</em></p>
             </div>
@@ -534,23 +565,20 @@
             <div class="timeline-year">2018</div>
             <div class="timeline-body">
               <h3>Monitor Bolsista de Sociologia</h3>
-              <p class="inst">CEFET/RJ</p>
-              <p class="detail">Programa de Monitoria 2018 &middot; Disciplina de Sociologia</p>
+              <p class="inst">CEFET/RJ — Programa de Monitoria 2018</p>
             </div>
           </div>
         </section>
 
-        <!-- Projetos de Pesquisa -->
+        <!-- Projetos -->
         <section class="section" id="pesquisa">
-          <h2 class="section-title">Projetos de Pesquisa</h2>
+          <h2 class="section-title"><span class="icon">&#128300;</span> Projetos de Pesquisa</h2>
 
           <div class="timeline-item">
-            <div class="timeline-year">2026 &ndash; atual</div>
+            <div class="timeline-year">2026 – atual</div>
             <div class="timeline-body">
               <h3>População de 15+ Fora da Escola: Demanda por EJA e Transições para o Trabalho</h3>
-              <p class="detail">
-                Diagnóstico e produção de evidências para políticas públicas sobre trajetórias de jovens de 15 anos ou mais fora da escola com a conclusão do ensino básico. Natureza: Pesquisa &middot; Mestrado/Doutorado em andamento.
-              </p>
+              <p class="detail">Diagnóstico e produção de evidências para políticas públicas sobre trajetórias de jovens de 15 anos ou mais fora da escola antes da conclusão do ensino básico. Natureza: Mestrado/Doutorado em andamento.</p>
               <div class="tags">
                 <span class="tag">EJA</span>
                 <span class="tag">Desigualdade educacional</span>
@@ -561,27 +589,24 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2025 &ndash; 2026</div>
+            <div class="timeline-year">2025 – 2026</div>
             <div class="timeline-body">
-              <h3>Experiências de Estudantes LGBTQIAPN+ no Ensino Superior</h3>
-              <p class="detail">
-                Análise das experiências de estudantes LGBTQIAPN+ na Universidade do Estado do Rio de Janeiro (UERJ), com foco na produção de conhecimento e políticas institucionais de inclusão.
-              </p>
+              <h3>Experiências de Estudantes LGBTQIAPN+ no Ensino Superior (UERJ)</h3>
+              <p class="detail">Análise das experiências de estudantes LGBTQIAPN+ na UERJ, com foco na produção de conhecimento e políticas institucionais de inclusão.</p>
               <div class="tags">
                 <span class="tag">LGBTQIAPN+</span>
                 <span class="tag">Ensino superior</span>
                 <span class="tag">Diversidade</span>
+                <span class="tag">Políticas institucionais</span>
               </div>
             </div>
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2023 &ndash; 2024</div>
+            <div class="timeline-year">2023 – 2024</div>
             <div class="timeline-body">
               <h3>Violência Urbana e Educação em Niterói/RJ</h3>
-              <p class="detail">
-                Mapeamento dos impactos dos grupos armados nas atividades pedagógicas de escolas públicas no município de Niterói/RJ. Financiamento: CNPq (Bolsa PIBITI).
-              </p>
+              <p class="detail">Mapeamento dos impactos dos grupos armados nas atividades pedagógicas de escolas públicas no município de Niterói/RJ. Financiamento: CNPq (Bolsa PIBITI).</p>
               <div class="tags">
                 <span class="tag">Violência urbana</span>
                 <span class="tag">Escolas públicas</span>
@@ -592,12 +617,10 @@
           </div>
 
           <div class="timeline-item">
-            <div class="timeline-year">2018 &ndash; 2019</div>
+            <div class="timeline-year">2018 – 2019</div>
             <div class="timeline-body">
               <h3>Produção de Vídeos na Internet por Jovens Negros LGBTs</h3>
-              <p class="detail">
-                Análise discursiva da produção e circulação de vídeos na Internet pela perspectiva de jovens negros LGBTs. Orientação: Prof.ª Dr.ª Maria Cristina Giorgi.
-              </p>
+              <p class="detail">Análise discursiva da produção e circulação de vídeos na Internet pela perspectiva de jovens negros LGBTs. Orient.: Prof.ª Dr.ª Maria Cristina Giorgi (CEFET/RJ). Financiamento: CNPq (PIBIC-EM).</p>
               <div class="tags">
                 <span class="tag">Análise do discurso</span>
                 <span class="tag">Raça</span>
@@ -608,105 +631,79 @@
           </div>
         </section>
 
-        <!-- Publicações — Artigos -->
+        <!-- Artigos -->
         <section class="section" id="publicacoes">
-          <h2 class="section-title">Artigos em Periódicos</h2>
+          <h2 class="section-title"><span class="icon">&#128196;</span> Artigos em Periódicos</h2>
 
           <div class="pub-item">
             <p class="pub-title">God's people? Otherness and digital mediation in evangelical narrative of the Israel-Hamas-Palestine war</p>
-            <p class="pub-meta">
-              GIORGI, M. C.; <strong>VILLELA, G. M. M.</strong>; OLIVEIRA, A.; SANTANA JUNIOR, H. M.<br/>
-              <span class="pub-journal">SHAG (STEPS)</span>, v. 11, p. 139–166, 2025.
-            </p>
+            <p class="pub-meta">GIORGI, M. C.; <strong>VILLELA, G. M. M.</strong>; OLIVEIRA, A.; SANTANA JUNIOR, H. M.<br/>
+            <span class="pub-journal">SHAG (STEPS)</span>, v. 11, p. 139–166, 2025.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">Nessa bandeira não é pra gay: construções discursivas em @gaycombaloneiro no Twitter</p>
-            <p class="pub-meta">
-              <strong>VILLELA, G. M. M.</strong>; GIORGI, M. C.; CALIXTO, R.<br/>
-              <span class="pub-journal">INTERCÂMBIO (São Paulo, Online)</span>, v. 45, p. e202122, 2022.
-            </p>
+            <p class="pub-meta"><strong>VILLELA, G. M. M.</strong>; GIORGI, M. C.; CALIXTO, R.<br/>
+            <span class="pub-journal">INTERCÂMBIO (São Paulo, Online)</span>, v. 45, p. e202122, 2022.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">Movimento estudantil online contra LGBTIfobia: práticas discursivas e educativas em mídias digitais</p>
-            <p class="pub-meta">
-              <strong>VILLELA, G. M. M.</strong>; GIORGI, M. C.<br/>
-              <span class="pub-journal">Revista de Ciências Sociais (UFC)</span>, v. 52, p. 65–95, 2021.
-            </p>
+            <p class="pub-meta"><strong>VILLELA, G. M. M.</strong>; GIORGI, M. C.<br/>
+            <span class="pub-journal">Revista de Ciências Sociais (UFC)</span>, v. 52, p. 65–95, 2021.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">Documentos no discurso da LGBTIfobia: o discurso das mídias sociais</p>
-            <p class="pub-meta">
-              <strong>VILLELA, G. M. M.</strong>; GIORGI, M. C.; DE ALMEIDA, F. S.; VARGENS, D. P. de M.<br/>
-              <span class="pub-journal">LETRÓNICA</span>, v. 13, p. e36006–12, 2020.
-            </p>
+            <p class="pub-meta"><strong>VILLELA, G. M. M.</strong>; GIORGI, M. C.; DE ALMEIDA, F. S.; VARGENS, D. P. de M.<br/>
+            <span class="pub-journal">LETRÓNICA</span>, v. 13, p. e36006–12, 2020.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">Priorizar uma área não é abandonar a outra: quando o discurso da mídia de referência e pesquisa</p>
-            <p class="pub-meta">
-              PEREIRA MARTINS, E.; <strong>MERLIM MORAES VILLELA, G.</strong>; GIORGI, M. C.; SAMPAIO DE ALMEIDA, F.<br/>
-              <span class="pub-journal">Revista Brasileira de Política e Administração da Educação</span>, v. 36, p. 1273–1290, 2020.
-            </p>
+            <p class="pub-meta">PEREIRA MARTINS, E.; <strong>MERLIM MORAES VILLELA, G.</strong>; GIORGI, M. C.; SAMPAIO DE ALMEIDA, F.<br/>
+            <span class="pub-journal">Revista Brasileira de Política e Administração da Educação</span>, v. 36, p. 1273–1290, 2020.</p>
           </div>
         </section>
 
-        <!-- Capítulos de Livros -->
+        <!-- Livros -->
         <section class="section" id="livros">
-          <h2 class="section-title">Capítulos de Livros</h2>
+          <h2 class="section-title"><span class="icon">&#128218;</span> Capítulos de Livros</h2>
 
           <div class="pub-item">
             <p class="pub-title">Tolerância e respeito na disciplina de Ciências e Biologia</p>
-            <p class="pub-meta">
-              MORAES, V. M.; <strong>VILLELA, G. M. M.</strong><br/>
-              In: <span class="pub-journal">Paulo Freire: radicalidade nas disputas nos currículos?</span> Niterói: Editora Raspueira, 2025, p. 151–185.
-            </p>
+            <p class="pub-meta">MORAES, V. M.; <strong>VILLELA, G. M. M.</strong><br/>
+            In: <span class="pub-journal">Paulo Freire: radicalidade nas disputas nos currículos?</span> Niterói: Editora Raspueira, 2025, p. 151–185.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">Insurgências do fazer acadêmico em tempos de crise: análise cartográfica do discurso e trabalho coletivo</p>
-            <p class="pub-meta">
-              OLIVEIRA, A.; ABRANTES, F. S. de; <strong>VILLELA, G. M. M.</strong>; GIORGI, M. C. (coord.)<br/>
-              In: <span class="pub-journal">Insurgências do fazer humanístico?</span> São Paulo: Margem da Palavra, 2023, p. 165–182.
-            </p>
+            <p class="pub-meta">OLIVEIRA, A.; ABRANTES, F. S. de; <strong>VILLELA, G. M. M.</strong>; GIORGI, M. C. (coord.)<br/>
+            In: <span class="pub-journal">Insurgências do fazer humanístico?</span> São Paulo: Margem da Palavra, 2023, p. 165–182.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">Tudo que falam que um homem não é para ser, eu sempre fui: masculinidades e negritudes no discurso de sujeitos do ensino médio</p>
-            <p class="pub-meta">
-              MODESTO, W. O.; ALMEIDA, F. S. de; <strong>VILLELA, G. M. M.</strong><br/>
-              In: <span class="pub-journal">Masculinidades negras: novos debates desde a pesquisa.</span> São Paulo: Ciclo Contínuo Editorial, 2022, p. 191–209.
-            </p>
+            <p class="pub-meta">MODESTO, W. O.; ALMEIDA, F. S. de; <strong>VILLELA, G. M. M.</strong><br/>
+            In: <span class="pub-journal">Masculinidades negras: novos debates desde a pesquisa.</span> São Paulo: Ciclo Contínuo Editorial, 2022, p. 191–209.</p>
           </div>
 
           <div class="pub-item">
             <p class="pub-title">O gênero discursivo livre: tensões entre saberes acadêmicos e políticos ao vivo no Instagram</p>
-            <p class="pub-meta">
-              <strong>VILLELA, G. M. M.</strong>; ALMEIDA, F. S. de; GIORGI, M. C.<br/>
-              In: <span class="pub-journal">Pesquisar com gêneros do discurso 3.</span> Campinas: Carlinfos, 2020, v. 1, p. 34–48.
-            </p>
+            <p class="pub-meta"><strong>VILLELA, G. M. M.</strong>; ALMEIDA, F. S. de; GIORGI, M. C.<br/>
+            In: <span class="pub-journal">Pesquisar com gêneros do discurso 3.</span> Campinas: Carlinfos, 2020, v. 1, p. 34–48.</p>
           </div>
         </section>
 
         <!-- Eventos -->
         <section class="section" id="eventos">
-          <h2 class="section-title">Apresentações de Trabalho (seleção)</h2>
+          <h2 class="section-title"><span class="icon">&#127908;</span> Apresentações (seleção)</h2>
 
           <div class="timeline-item">
             <div class="timeline-year">2025</div>
             <div class="timeline-body">
               <h3>Territórios violentos e desigualdades educacionais</h3>
-              <p class="detail">Experiências de escolas públicas em Niterói/RJ &middot; 49º Encontro Anual da ANPOCS</p>
-            </div>
-          </div>
-
-          <div class="timeline-item">
-            <div class="timeline-year">2025</div>
-            <div class="timeline-body">
-              <h3>XIII Seminário Fluminense de Sociologia</h3>
-              <p class="detail">Territórios violentos e desigualdades educacionais: experiências de escolas públicas em Niterói/RJ</p>
+              <p class="inst">49º Encontro Anual da ANPOCS · XIII Seminário Fluminense de Sociologia</p>
             </div>
           </div>
 
@@ -714,23 +711,23 @@
             <div class="timeline-year">2024</div>
             <div class="timeline-body">
               <h3>Violência como tema da Ciência Política na Educação Básica</h3>
-              <p class="detail">14º Encontro da Associação Brasileira de Ciência Política (ABCP) &middot; Salvador, UFBA</p>
+              <p class="inst">14º Encontro da ABCP · Salvador, UFBA</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-year">2024</div>
             <div class="timeline-body">
-              <h3>Comunicação digital e mídias: cartografia discursiva do bem-verdade/mentira do bolsonarismo</h3>
-              <p class="detail">I Simpósio de Estudos do Discurso e Cartografia &middot; Campinas</p>
+              <h3>Cartografia discursiva do bem-verdade/mentira do bolsonarismo</h3>
+              <p class="inst">I Simpósio de Estudos do Discurso e Cartografia · Campinas</p>
             </div>
           </div>
 
           <div class="timeline-item">
             <div class="timeline-year">2023</div>
             <div class="timeline-body">
-              <h3>De 7 manifestantes democráticos a "terroristas": Cartografia discursiva sobre 08/01/2023</h3>
-              <p class="detail">VII Congresso Ibero-Americano e X Congresso Luso-Brasileiro de Política e Gestão da Educação</p>
+              <h3>De manifestantes a "terroristas": cartografia discursiva sobre o 08/01/2023</h3>
+              <p class="inst">VII Congresso Ibero-Americano e X Congresso Luso-Brasileiro de Política e Gestão da Educação</p>
             </div>
           </div>
 
@@ -738,7 +735,7 @@
             <div class="timeline-year">2021</div>
             <div class="timeline-body">
               <h3>O projeto "cura gay": produção de subjetividades e legitimações da intolerância heterossexista</h3>
-              <p class="detail">III Jornada Internacional de Semântica e Enunciação &middot; Campinas, 2021</p>
+              <p class="inst">III Jornada Internacional de Semântica e Enunciação · Campinas</p>
             </div>
           </div>
 
@@ -746,7 +743,7 @@
             <div class="timeline-year">2021</div>
             <div class="timeline-body">
               <h3>Movimento estudantil online contra LGBTIfobia</h3>
-              <p class="detail">XXXIX International Congress of the Latin American Studies Association (LASA)</p>
+              <p class="inst">XXXIX International Congress of the Latin American Studies Association (LASA)</p>
             </div>
           </div>
 
@@ -754,7 +751,7 @@
             <div class="timeline-year">2019</div>
             <div class="timeline-body">
               <h3>Produção de vídeos na Internet pela perspectiva de jovens negros LGBTs</h3>
-              <p class="detail">Jornada Integrada de Pesquisa e Pós-Graduação 2019 &middot; CEFET/RJ</p>
+              <p class="inst">Jornada Integrada de Pesquisa e Pós-Graduação · CEFET/RJ</p>
             </div>
           </div>
         </section>
@@ -764,9 +761,8 @@
       <!-- ── Sidebar ── -->
       <aside class="sidebar">
 
-        <!-- Contato / Links -->
         <div class="section">
-          <h2 class="section-title">Links</h2>
+          <h2 class="section-title">&#128279; Links</h2>
           <div class="info-row">
             <span class="info-label">Lattes</span>
             <span class="info-value"><a href="http://lattes.cnpq.br/8802299231847034" target="_blank">Ver currículo</a></span>
@@ -781,62 +777,42 @@
           </div>
         </div>
 
-        <!-- Áreas de Atuação -->
         <div class="section">
-          <h2 class="section-title">Linhas de Pesquisa</h2>
-          <div class="tags" style="flex-direction: column; gap: 8px;">
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Democracia, Estado e Teoria Política</span>
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Desigualdades e Mobilidade Social</span>
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Violência Urbana e Educação</span>
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Gênero, Raça e Sexualidade</span>
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Análise do Discurso</span>
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Mídias Digitais</span>
-            <span class="tag" style="border-radius:6px; padding: 6px 12px;">Articulação do Trabalho Educativo</span>
+          <h2 class="section-title">&#128300; Linhas de Pesquisa</h2>
+          <div class="tag-list">
+            <span class="tag">Democracia, Estado e Teoria Política</span>
+            <span class="tag">Desigualdades e Mobilidade Social</span>
+            <span class="tag">Violência Urbana e Educação</span>
+            <span class="tag">Gênero, Raça e Sexualidade</span>
+            <span class="tag">Análise do Discurso</span>
+            <span class="tag">Mídias Digitais</span>
+            <span class="tag">Articulação do Trabalho Educativo</span>
           </div>
         </div>
 
-        <!-- Idiomas -->
         <div class="section">
-          <h2 class="section-title">Idiomas</h2>
-
+          <h2 class="section-title">&#127760; Idiomas</h2>
           <div class="lang-item">
-            <div class="lang-name">
-              Inglês <span class="lang-level">Avançado</span>
-            </div>
+            <div class="lang-name">Inglês <span class="lang-level">Avançado</span></div>
             <div class="lang-bar"><div class="lang-bar-fill" style="width:90%"></div></div>
           </div>
-
           <div class="lang-item">
-            <div class="lang-name">
-              Francês <span class="lang-level">Avançado</span>
-            </div>
+            <div class="lang-name">Francês <span class="lang-level">Avançado</span></div>
             <div class="lang-bar"><div class="lang-bar-fill" style="width:85%"></div></div>
           </div>
-
           <div class="lang-item">
-            <div class="lang-name">
-              Espanhol <span class="lang-level">Intermediário</span>
-            </div>
+            <div class="lang-name">Espanhol <span class="lang-level">Intermediário</span></div>
             <div class="lang-bar"><div class="lang-bar-fill" style="width:65%"></div></div>
           </div>
         </div>
 
-        <!-- Revisor -->
         <div class="section">
-          <h2 class="section-title">Revisor de Periódico</h2>
+          <h2 class="section-title">&#127963; Afiliações</h2>
           <div class="info-row">
-            <span class="info-value">EDUCAÇÃO EM REVISTA (Online) &mdash; 2022</span>
-          </div>
-        </div>
-
-        <!-- Afiliações -->
-        <div class="section">
-          <h2 class="section-title">Afiliações</h2>
-          <div class="info-row">
-            <span class="info-value">CERES/IESP-UERJ &mdash; Centro para Estudo da Riqueza e da Estratificação Social</span>
+            <span class="info-value">CERES/IESP-UERJ — Centro para Estudo da Riqueza e da Estratificação Social</span>
           </div>
           <div class="info-row">
-            <span class="info-value">GAPI/UFF &mdash; Grupo de Análise de Política Internacional</span>
+            <span class="info-value">GAPI/UFF — Grupo de Análise de Política Internacional</span>
           </div>
         </div>
 
@@ -844,11 +820,32 @@
     </div>
   </div>
 
-  <footer style="background: var(--surface); border-top: 1px solid var(--border); padding: 24px 0; text-align: center; font-size: 12.5px; color: var(--text-muted);">
+  <footer>
     <div class="page">
       Gabriel Merlim Moraes Villela &mdash; Currículo atualizado em maio de 2026
     </div>
   </footer>
+
+  <script>
+    // Destaca a aba ativa conforme a seção visível na tela
+    const sections = document.querySelectorAll('section.section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+          if (active) {
+            active.classList.add('active');
+            active.scrollIntoView({ block: 'nearest', inline: 'center' });
+          }
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => observer.observe(s));
+  </script>
 
 </body>
 </html>
